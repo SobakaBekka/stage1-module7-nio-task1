@@ -24,7 +24,7 @@ public class FileReader {
             String[] lines = content.split("\n");
             for (String line : lines) {
                 String[] parts = line.split(":");
-                if (parts.length < 2) continue;  // Пропуск строк с неправильным форматом
+                if (parts.length < 2) continue;
 
                 String key = parts[0].trim();
                 String value = parts[1].trim();
@@ -43,7 +43,7 @@ public class FileReader {
                         phone = Long.parseLong(value);
                         break;
                     default:
-                        System.out.println("Unknown key: " + key); // Добавление default блока для обработки неизвестных ключей
+                        System.out.println("Unknown key: " + key);
                         break;
                 }
             }
