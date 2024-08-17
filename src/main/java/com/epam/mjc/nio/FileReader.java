@@ -1,11 +1,12 @@
 package com.epam.mjc.nio;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.stream.Collectors;
 
 public class FileReader {
 
@@ -15,10 +16,12 @@ public class FileReader {
         String email = null;
         Long phone = null;
 
-        try {
-            Path path = Paths.get(file.toURI());
-            List<String> lines = Files.readAllLines(path);
+        Path path = Paths.get(file.toURI());
 
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
+            String content = reader.lines().collect(Collectors.joining("\n"));
+
+            String[] lines = content.split("\n");
             for (String line : lines) {
                 String[] parts = line.split(":");
                 if (parts.length < 2) continue;  // Пропуск строк с неправильным форматом
