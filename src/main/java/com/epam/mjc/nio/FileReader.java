@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-
 public class FileReader {
 
     public Profile getDataFromFile(File file) {
@@ -39,6 +38,9 @@ public class FileReader {
                         break;
                     case "Phone":
                         phone = Long.parseLong(value);
+                        break;
+                    default:
+                        System.out.println("Unknown key: " + key); // Добавление default блока для обработки неизвестных ключей
                         break;
                 }
             }
